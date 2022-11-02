@@ -1,6 +1,8 @@
-.Main {
+/* START WELCOME */
+.Main,
+.CreateAccountMain,
+.ForgotAccountMain {
   height: 100vh;
-  background-color: grey;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,7 +10,9 @@
   background-image: url(/public/Foto/BackMain.png);
 }
 
-.MainContent {
+.MainContent,
+.CreateAccountMainContent,
+.ForgotAccountContent {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,8 +22,12 @@
   background: white;
 }
 
-.MainContent > h1,
-h2 {
+.MainContentH1,
+.MainContentH2,
+.CreateAccountMainContentH1,
+.CreateAccountMainContentH2,
+.ForgotAccountContentP,
+.ForgotAccountContentPP {
   font-size: 20px;
   line-height: 40px;
   font-family: "Dancing Script", cursive;
@@ -27,19 +35,25 @@ h2 {
   font-weight: 700;
 }
 
-.MainContent > h1 {
+.MainContentH1,
+.CreateAccountMainContentH1 {
   font-size: 30px;
 }
 
-.MainContent input {
+.MainContentInput,
+.CreateAccountMainContentInput {
   margin-bottom: 15px;
   width: 332px;
+  border-style: solid;
   padding: 0px 5px;
   font-size: 18px;
   line-height: 36px;
+  font-family: "Dancing Script", cursive;
+  font-style: normal;
+  font-weight: 700;
 }
 
-.MainContent button {
+.MainContentButton {
   border-radius: 6px;
   font-size: 20px;
   line-height: 48px;
@@ -47,24 +61,29 @@ h2 {
   background-color: #1877f2;
   margin-bottom: 10px;
   cursor: pointer;
-  font-weight: 700;
   color: antiquewhite;
   border-style: none;
+  font-family: "Dancing Script", cursive;
+  font-style: normal;
+  font-weight: 700;
 }
 
-.MainContent button:hover {
-  font-size: 30px;
+.MainContentButton:hover {
+  font-size: 25px;
+  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
 }
 
-.MainContent a {
+.ForgotAccount {
   color: #1877f2;
   font-size: 17px;
-  font-weight: 800;
+  font-family: "Dancing Script", cursive;
+  font-style: normal;
+  font-weight: 700;
   text-decoration: none;
   margin-bottom: 10px;
 }
 
-.MainContent a:hover {
+.ForgotAccount:hover {
   font-size: 25px;
 }
 
@@ -72,6 +91,9 @@ h2 {
   color: #96999e;
   position: relative;
   margin-bottom: 10px;
+  font-family: "Dancing Script", cursive;
+  font-style: normal;
+  font-weight: 700;
 }
 
 .MainSpan::after {
@@ -93,7 +115,99 @@ h2 {
   width: 152px;
   right: 120%;
 }
-
-.MainContent button:last-child {
+.CreateANewAccount {
+  text-align: center;
   background-color: #42b72a;
+  border-radius: 6px;
+  font-size: 20px;
+  line-height: 48px;
+  width: 332px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: antiquewhite;
+  border-style: none;
+  font-family: "Dancing Script", cursive;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.CreateANewAccount:hover {
+  font-size: 25px;
+  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+}
+/* Finish Welcome */
+
+/* START Create Account */
+
+.CreateAccountMainContentSpan {
+  content: "";
+  height: 2px;
+  background-color: #96999e;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.CreateAccountMainContentSelect,
+.CreateAccountMainContentSelectLast {
+  margin-right: 30px;
+  margin-bottom: 15px;
+  width: 110px;
+  border-style: solid;
+  padding: 0px 5px;
+  font-size: 18px;
+  line-height: 36px;
+  font-family: "Dancing Script", cursive;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.CreateAccountMainContentSelectLast {
+  margin-right: 0px;
+}
+
+.CreateAccountMainContent {
+  background: wheat;
+}
+/* FINISH Create Account */
+
+/* START ForgotAccount */
+
+.ForgotAccountContentPP {
+  margin-bottom: 20px;
+}
+
+.ForgotAccountContentButton {
+  background-color: #42b72a;
+  border-radius: 6px;
+  font-size: 20px;
+  line-height: 48px;
+  width: 128px;
+  height: 50px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: antiquewhite;
+  border-style: none;
+  font-family: "Dancing Script", cursive;
+  font-style: normal;
+}
+
+.ForgotAccountMainLink {
+  margin-right: 20px;
+  background-color: #42b72a;
+  border-radius: 6px;
+  padding: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  color: antiquewhite;
+  font-family: "Dancing Script", cursive;
+  font-style: normal;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ForgotAccountMainLink,
+.ForgotAccountContentButton:hover {
+  font-size: 25px;
+  box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
 }

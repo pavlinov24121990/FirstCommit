@@ -2,6 +2,11 @@ import './React';
 import './HardReset.css';
 import './Fonts.css';
 import './App.css';
+import { Routes, Route, Link } from 'react-router-dom';
+import { Welcome } from './pages/Welcome';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { CreateANewAccount } from './pages/CreateANewAccount';
+import { ForgotAccount } from './pages/ForgotAccount';
 
 function App() {
 
@@ -9,22 +14,15 @@ function App() {
 
 
   return (
-    <div className="App">
-      <div className="Main">
-        <div className="MainContent">
-          <h1>NoT Only Flowers</h1>
-          <h2>In Love</h2>
-          <input className="MainContentInput" placeholder="Write an email" type="email" />
-          <input placeholder="Write password" type="pass" />
-          <button>Log in</button>
-          <a href="#">Forgot account ?</a>
-          <span className="MainSpan">
-            or
-          </span>
-          <button>Create a new account</button>
-        </div>
-      </div>
-    </div>
+    
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="CreateANewAccount" element={<CreateANewAccount />} />
+        <Route path="ForgotAccount" element={<ForgotAccount />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+  
+    
   );
 }
 

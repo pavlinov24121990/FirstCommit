@@ -1,8 +1,14 @@
 
 
-let asd = () => {
-  console.log("hello world")
-}
+// newFunction()
 
-asd()
+// function newFunction() {
+//   let asd = () => {
+//     console.log("hello world")
+//   }
+
+//   asd()
+// }
+
+
 
