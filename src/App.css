@@ -169,6 +169,10 @@
 .CreateAccountMainContent {
   background: wheat;
 }
+
+.CreateAccountMainContentForm {
+  text-align: center;
+}
 /* FINISH Create Account */
 
 /* START ForgotAccount */

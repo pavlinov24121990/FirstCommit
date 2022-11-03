@@ -1,4 +1,4 @@
-import './React';
+
 import './HardReset.css';
 import './Fonts.css';
 import './App.css';
