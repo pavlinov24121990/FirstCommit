@@ -8,6 +8,8 @@
   align-items: center;
   flex-direction: column;
   background-image: url(/public/Foto/BackMain.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .MainContent,
@@ -136,6 +138,12 @@
   font-size: 25px;
   box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
 }
+
+.MainContentForm {
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
 /* Finish Welcome */
 
 /* START Create Account */
@@ -173,6 +181,36 @@
 .CreateAccountMainContentForm {
   text-align: center;
 }
+
+.CreateAccountMainContentFormDivImg,
+.CreateAccountMainContentFormDivImgg,
+.MainContentFormI {
+  background-image: url(../public/Foto/password.png);
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 25%;
+  right: 53%;
+}
+
+.MainContentFormWelcomeDiv {
+  position: relative;
+}
+
+.MainContentFormI {
+  right: 3%;
+}
+.CreateAccountMainContentFormDivImgg {
+  right: 3%;
+}
+
+.CreateAccountMainContentFormDiv {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
 /* FINISH Create Account */
 
 /* START ForgotAccount */

@@ -1,29 +1,16 @@
-
 import './HardReset.css';
 import './Fonts.css';
 import './App.css';
-import { Routes, Route, Link } from 'react-router-dom';
-import { Welcome } from './pages/Welcome';
-import { NotFoundPage } from './pages/NotFoundPage';
-import { CreateANewAccount } from './pages/CreateANewAccount';
-import { ForgotAccount } from './pages/ForgotAccount';
+import { useState } from "react"
+import { MainRoute } from './Routs/MainRoute';
+import { Routee } from './Routs/Routers';
+import { Routes, Route, Link, redirect, BrowserRouter } from 'react-router-dom';
 
 function App() {
-
-
-
-
+  const [passwordDigest, setPasswordDigest] = useState()
+  console.log(passwordDigest)
   return (
-    
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="CreateANewAccount" element={<CreateANewAccount />} />
-        <Route path="ForgotAccount" element={<ForgotAccount />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-  
-    
+   passwordDigest ? <MainRoute setPasswordDigest = {setPasswordDigest} /> : <Routee setPasswordDigest={setPasswordDigest} />  
   );
 }
-
 export default App;
