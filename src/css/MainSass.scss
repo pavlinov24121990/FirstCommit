@@ -1,8 +1,6 @@
-.MainMain {
+.MainCenter {
   display: flex;
   div {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    width: 100%;
   }
 }

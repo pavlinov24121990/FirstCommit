@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MainRoute } from "../Routs/MainRoute";
 
 
-const Welcome = ({setPasswordDigest}) => {
+
+const Welcome = ({ setPasswordDigest }) => {
 
 const [passwords, setPassword] = useState("Write password")
 const [email, setEmail] = useState("Write email")
@@ -28,17 +29,19 @@ const [fullName, setFullName] = useState()
       body: formDataa
     })
     let result = await request.json()
-    
+    console.log (result)
     forma.reset()
     if (request.ok) {
       setPasswordDigest(result.password_digest)
       setFullName(result.full_name)
       setEmail(result.email)
-      console.log(result)
+      console.log (fullName)
+      
     } else {
       setPassword("Invalid password")
       setEmail("Invalid email")
     }
+    
   }
 
   return (
@@ -64,4 +67,5 @@ const [fullName, setFullName] = useState()
   )
 }
 
-export {Welcome}
+export { Welcome  }
+

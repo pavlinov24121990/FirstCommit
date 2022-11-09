@@ -1,7 +1,8 @@
 .NavBar {
   padding: 30px;
   text-align: center;
-
+  box-sizing: border-box;
+  height: 100vh;
   ul {
     display: flex;
     flex-direction: column;
@@ -9,11 +10,11 @@
     background-color: rgb(6, 73, 73);
     border-radius: 20px;
     box-shadow: 0px 0px 30px 10px black;
-    height: 100vh;
-
+    height: 100%;
     li {
       padding: 30px;
       a {
+        display: inline-block;
         padding: 5px;
         text-decoration: none;
         font-size: 30px;
@@ -24,6 +25,7 @@
         color: antiquewhite;
       }
       a:hover {
+        transform: scale(1.2);
         color: rgb(238, 205, 161);
       }
     }

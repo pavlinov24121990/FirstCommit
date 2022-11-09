@@ -1,0 +1,44 @@
+.HeaderrMain {
+  padding: 30px;
+  box-sizing: border-box;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #064949;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 0px 30px 10px black;
+    li {
+      display: inline-block;
+      padding: 30px;
+
+      p {
+        font-size: 30px;
+        line-height: 20px;
+        font-family: "Dancing Script", cursive;
+        font-style: normal;
+        font-weight: 700;
+        color: antiquewhite;
+        padding: 10px;
+      }
+      button {
+        background-color: rgb(6, 73, 73);
+        font-size: 30px;
+        line-height: 20px;
+        font-family: "Dancing Script", cursive;
+        font-style: normal;
+        font-weight: 700;
+        color: antiquewhite;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+      & button:hover {
+        transform: scale(1.2);
+        color: rgb(238, 205, 161);
+      }
+    }
+  }
+}

@@ -3,16 +3,18 @@ import { NavBar } from './NavBar'
 import { HeaderMain } from './HeaderMain'
 import { MainCenter } from './MainCenter'
 import '../css/MainSass.scss'
+import { useState, useEffect } from "react";
 
-const Main = () => {
+const Main = ({setPasswordDigest, passwordDigest}) => {
   return (
-      <div className="MainMain">
-        <NavBar />
+      <div className="MainCenter">
+        <NavBar setPasswordDigest={setPasswordDigest}/>
         <div>
-          <HeaderMain />
-          <MainCenter />
+          <HeaderMain setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest} />
+          <MainCenter setPasswordDigest={setPasswordDigest}/>
         </div>
       </div>
+      
       
     )
 }
