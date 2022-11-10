@@ -51,7 +51,7 @@ const HeaderMain = ({ setPasswordDigest, passwordDigest }) => {
           <li><EmailzoomInDown><p>{email}</p></EmailzoomInDown></li>
           <li><SvglFlipY><i><NotOnlyFlower/></i></SvglFlipY></li>
           <li><button onClick={Logout}><BounceButton>Logout</BounceButton></button></li>
-          <li><FontAwesomeIcon icon={faGear} /></li>
+          
         </ul>
       </section>
     )

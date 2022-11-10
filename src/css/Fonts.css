@@ -2,26 +2,26 @@
   font-family: "Dancing Script", cursive;
   font-style: normal;
   font-weight: 700;
-  src: url(./fonts//DancingScript-Bold.ttf) format("Bold");
+  src: url(../fonts/DancingScript-Bold.ttf) format("Bold");
 }
 
 @font-face {
   font-family: "Dancing Script", cursive;
   font-style: normal;
   font-weight: 500;
-  src: url(./fonts/DancingScript-Medium.ttf) format("Medium");
+  src: url(../fonts/DancingScript-Medium.ttf) format("Medium");
 }
 
 @font-face {
   font-family: "Dancing Script", cursive;
   font-style: normal;
   font-weight: 400;
-  src: url(./fonts/DancingScript-Regular.ttf) format("Regular");
+  src: url(../fonts/DancingScript-Regular.ttf) format("Regular");
 }
 
 @font-face {
   font-family: "Dancing Script", cursive;
   font-style: normal;
   font-weight: 600;
-  src: url(./fonts/DancingScript-SemiBold.ttf) format("SemiBold");
+  src: url(../fonts/DancingScript-SemiBold.ttf) format("SemiBold");
 }

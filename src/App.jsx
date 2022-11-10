@@ -1,5 +1,6 @@
-import './HardReset.css';
-import './Fonts.css';
+
+import "./css/HardReset.css"
+import './css/Fonts.css';
 import './App.css';
 import { useState, useEffect } from "react";
 import { MainRoute } from './Routs/MainRoute';
