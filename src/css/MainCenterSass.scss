@@ -1,10 +1,37 @@
 .MainCenter {
-  overflow: scroll;
-  height: 620px;
+  height: 100%;
+  width: 99%;
+  overflow: auto;
+  flex: 1;
   padding: 5px;
   background-color: rgb(6, 73, 73);
   box-shadow: 0px 0px 30px 10px black;
   border-radius: 30px;
+  span {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    align-items: center;
+    input {
+      width: 50%;
+      font-size: 20px;
+      line-height: 20px;
+      font-family: "Dancing Script", cursive;
+      font-style: normal;
+      font-weight: 700;
+      border-radius: 20px;
+      border: 1px solid rgb(6, 73, 73);
+    }
+    p {
+      display: inline-block;
+      font-size: 20px;
+      line-height: 20px;
+      font-family: "Dancing Script", cursive;
+      font-style: normal;
+      font-weight: 700;
+      color: antiquewhite;
+    }
+  }
   ul {
     padding: 20px;
     background-color: whitesmoke;
@@ -16,10 +43,14 @@
       justify-content: flex-end;
       span {
         margin-right: 10px;
+        padding: 5px;
+        &:hover {
+          transform: scale(1.2);
+          color: cadetblue;
+        }
       }
     }
     li {
-      margin-bottom: 50px;
       border: 5px solid rgb(6, 73, 73);
       border-radius: 30px;
       padding: 10px;
@@ -38,15 +69,51 @@
         color: black;
         margin-bottom: 10px;
       }
-      p {
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+      .postBody {
+        display: inline-block;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
         font-size: 20px;
         line-height: 24px;
         font-family: "Dancing Script", cursive;
         font-style: normal;
         font-weight: 700;
+        background-color: whitesmoke;
+        overflow: auto;
+        word-wrap: break-word;
+        line-break: anywhere;
       }
-      &:last-child {
-        margin-bottom: 0px;
+    }
+
+    .like {
+      display: flex;
+      justify-content: space-between;
+      .UsersName {
+        display: inline-block;
+        padding: 30px 40px 5px 40px;
+        font-size: 20px;
+        line-height: 24px;
+        font-family: "Dancing Script", cursive;
+        font-style: normal;
+        font-weight: 700;
+        color: rgb(128, 123, 123);
+      }
+      span {
+        padding: 40px 40px 5px 40px;
+        margin-right: 0px;
+        .heartLikeDissmis {
+          opacity: 0.3;
+          transform: scale(1.4);
+        }
+        .heartLike {
+          opacity: 1;
+          transform: scale(1);
+        }
       }
     }
   }

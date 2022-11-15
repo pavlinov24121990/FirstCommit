@@ -29,13 +29,11 @@ const [fullName, setFullName] = useState()
       body: formDataa
     })
     let result = await request.json()
-    console.log (result)
     forma.reset()
     if (request.ok) {
       setPasswordDigest(result.password_digest)
       setFullName(result.full_name)
       setEmail(result.email)
-      console.log (fullName)
       
     } else {
       setPassword("Invalid password")

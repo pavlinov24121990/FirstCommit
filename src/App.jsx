@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("passwordDigest",  passwordDigest);
-    console.log()
+    
 
   }, [passwordDigest]);
   return (

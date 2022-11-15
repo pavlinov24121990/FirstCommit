@@ -3,63 +3,257 @@ import "../css/HardReset.css"
 import '../css/Fonts.css'
 import '../css/MainCenterSass.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPenToSquare, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faPlus, faMinus, faHeart, faCircleXmark, faThin } from '@fortawesome/free-solid-svg-icons'
+import { useEffect, useState } from "react";
+import { Modal } from '../components/Modal';
+import { flip } from 'react-animations';
+import styled, { keyframes } from 'styled-components';
+import { useLayoutEffect, useRef } from "react";
 
-const MainCenter = () => {
+const MainCenter = ({ passwordDigest }) => {
+
+  const [selectedPost, setSelectedPost] = useState(null)
+  const [buttonCreatePost, setButtonCreatePost] = useState()
+  const [listPost, setListPost] = useState([])
+  const [searchText, setSearchText] = useState("")
+  const [sortBy, setSortBy] = useState("sort_by=created_at")
+  const [sortTo, setSortTo] = useState("sort_to=desc")
+  const [pagePost, setPagePost] = useState("")
+  const [page, setPage] = useState(2)
 
 
 
+  
+
+  const handleScroll = e => {
+    if (e.currentTarget.scrollTop + e.currentTarget.clientHeight >= e.currentTarget.scrollHeight) {
+      numberPage(); PagePostValue()
+    } 
+  };
+
+
+  console.log(page)
+
+  function numberPage() {
+    setPage(page + 1)
+  }
+
+  function PagePostValue() {
+    setPagePost(`&page=${page}`)
+  }
+
+  function SortToValue(e) {
+    if (e.target.value.length) {
+      setSortTo(`sort_to=${e.target.value}`)
+    } else {
+      setSortTo(e.target.value)
+    }
+  }
+
+  function SearchValue(e) {
+    if (e.target.value.length) {
+      setSearchText(`&query=${e.target.value}`)
+    } else {
+      setSearchText(e.target.value)
+    }
+  }
+  
+
+  
+ 
+
+
+  function SortByValue(e) {
+    if (e.target.value.length) {
+      setSortBy(`sort_by=${e.target.value}`)
+    } else {
+      setSortBy(e.target.value)
+    }
+  }
+  
+
+  async function CreateNewPost(e) {
+    e.preventDefault();
+    const forma = document.getElementById('CreateNewPost');
+    const formaData = new FormData(forma);
+    let request = await fetch('https://study-rails-blog-api.herokuapp.com/api/v1/posts', {
+      method: 'POST',
+      body: formaData,
+      headers: {
+        Authorization: `Bearer ${passwordDigest}`
+      }
+    });
+    forma.reset()
+    let result = await request.json();
+    if (request.ok) {
+      PostList()
+      setSelectedPost(null)
+    } else {
+      
+    }
+  }
+
+  async function CreateLike (e, post) {
+    e.preventDefault();
+    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts/${post.id}/likes`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${passwordDigest}`
+      }
+    });
+    let result = await request.json();
+    console.log(result)
+    if (request.ok) {
+      PostList()
+    } else {
+    }
+  }
+
+  async function UpdatePost(e, post) {
+    e.preventDefault();
+    const forma = document.getElementById('CreateNewPost');
+    const formaData = new FormData(forma);
+    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts/${post.id}`, {
+      method: 'PUT',
+      body: formaData,
+      headers: {
+        Authorization: `Bearer ${passwordDigest}`
+      }
+    });
+    console.log (formaData)
+    forma.reset()
+    let result = await request.json();
+    if (request.ok) {
+      PostList()
+      setSelectedPost(null)
+    } else {
+    }
+  }
+ 
+  async function DeletePost(e, post) {
+    e.preventDefault();
+    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts/${post.id}`, {
+      method: 'DELETE',
+      headers: {
+      Authorization: `Bearer ${passwordDigest}`
+       }
+    });
+    if (request.ok) {
+      PostList()
+      
+    }
+  }
+
+  function buttonFunction (e, post) {
+    if (buttonCreatePost) {
+          CreateNewPost(e)
+    } else {
+          UpdatePost(e, post)
+        }
+  }
+
+
+  
+  async function PostList() {
+    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts?${pagePost}${searchText}&${sortBy}&${sortTo}`, {
+      method: 'GET'
+      
+    });
+    console.log(request)
+    let result = await request.json();
+    setListPost([...listPost,...result])
+    console.log(result)
+  }
+  console.log(listPost)
+  useEffect(() => {
+    PostList()
+  },[searchText, sortBy, sortTo, pagePost])
+  
+
+ 
+  
+
+  
+
+
+  const ListTitile = listPost && listPost.map((post, setCreateLikeLike) => {
+    return <ul key={post.id}>
+              <li>
+                <div>
+                  <span>
+                    <FontAwesomeIcon onClick={() => { setSelectedPost(post); setButtonCreatePost(true) }} icon={faPlus} />
+                  </span>
+                  <span>
+                    <FontAwesomeIcon onClick={e => { setSelectedPost(post); setButtonCreatePost(false);  }} icon={faPenToSquare} />
+                  </span>
+                  <span>
+                    <FontAwesomeIcon onClick={ e => DeletePost(e, post)} icon={faMinus} />
+                  </span>
+                </div>
+                <h2>{post.title}</h2>
+               <p className="postBody">{post.body}</p>
+              </li>
+              <div className="like">
+                <p className="UsersName">
+                  {post.user.full_name}
+                </p>
+                <span>   
+                <FontAwesomeIcon onClick={ e => CreateLike(e, post, setCreateLikeLike)} icon={faHeart} />
+                </span>
+              </div>
+            </ul>
+  });
+  
+  function ModalOff(e, setSelectedPost, selectedPost) {
+    if (selectedPost) {
+      setSelectedPost()
+    } else {
+     setSelectedPost(null)
+    }
+  }
+
+  
+
+
+  
+ 
+  
+    
+    
+
+
+  
+  
 
 
     return (
-      <section className='MainCenter'>
-        <ul>
-          <li>
-            <div>
-              <span>
-              <FontAwesomeIcon icon={faPlus} />
-            </span>
-            <span>
-              <FontAwesomeIcon icon={faPenToSquare} />
-            </span>
-            <span>
-              <FontAwesomeIcon icon={faMinus} />
-            </span>
-            </div>
-            <h2>
-              Let me introduce myself
-            </h2>
-            <p>
-              Let me introduce myself. My name is Mariya I am a 20-year-old student from Donetsk. I study at the university in my native town and my future profession is bookkeeping. I live with my parents and my elder sister Lena. We are a friendly family. Lena is 2 years older than me. We share our room and tell all our secrets to each other.
-              We are very much alike: open-hearted, smart and merry. That's why we have a lot of friends. I like organizing parties for our friends as we often gather to­gether, discuss our plans and have fun. My hobby is music. I play the guitar and write my own songs. They say, I have a nice voice. My family and friends often ask me to sing to guitar their favorite songs. Cooking is also my hobby. My Mom cooks very well. She has taught me how to cook a lot of delicious dishes from Ukrainian and Russian cuisine. My favorite dish is French soup, which I cook for the whole family.
-              In the evening, I often watch TV with my family and discuss my plans for the next day. On weekends, I often meet my friends or stay at home and read books. I like novels by Dariya Dontsova. I sometimes discuss her style and ideas with my sister. Literature, cooking, TV — I have a lot of topics to talk about and make new friends.
-              Let me introduce myself. My name is Mariya I am a 20-year-old student from Donetsk. I study at the university in my native town and my future profession is bookkeeping. I live with my parents and my elder sister Lena. We are a friendly family. Lena is 2 years older than me. We share our room and tell all our secrets to each other.
-              We are very much alike: open-hearted, smart and merry. That's why we have a lot of friends. I like organizing parties for our friends as we often gather to­gether, discuss our plans and have fun. My hobby is music. I play the guitar and write my own songs. They say, I have a nice voice. My family and friends often ask me to sing to guitar their favorite songs. Cooking is also my hobby. My Mom cooks very well. She has taught me how to cook a lot of delicious dishes from Ukrainian and Russian cuisine. My favorite dish is French soup, which I cook for the whole family.
-              In the evening, I often watch TV with my family and discuss my plans for the next day. On weekends, I often meet my friends or stay at home and read books. I like novels by Dariya Dontsova. I sometimes discuss her style and ideas with my sister. Literature, cooking, TV — I have a lot of topics to talk about and make new friends.
-              Let me introduce myself. My name is Mariya I am a 20-year-old student from Donetsk. I study at the university in my native town and my future profession is bookkeeping. I live with my parents and my elder sister Lena. We are a friendly family. Lena is 2 years older than me. We share our room and tell all our secrets to each other.
-              We are very much alike: open-hearted, smart and merry. That's why we have a lot of friends. I like organizing parties for our friends as we often gather to­gether, discuss our plans and have fun. My hobby is music. I play the guitar and write my own songs. They say, I have a nice voice. My family and friends often ask me to sing to guitar their favorite songs. Cooking is also my hobby. My Mom cooks very well. She has taught me how to cook a lot of delicious dishes from Ukrainian and Russian cuisine. My favorite dish is French soup, which I cook for the whole family.
-              In the evening, I often watch TV with my family and discuss my plans for the next day. On weekends, I often meet my friends or stay at home and read books. I like novels by Dariya Dontsova. I sometimes discuss her style and ideas with my sister. Literature, cooking, TV — I have a lot of topics to talk about and make new friends.
-            </p>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <h2>
-              Let me introduce myself
-            </h2>
-            <p>
-              Let me introduce myself. My name is Mariya I am a 20-year-old student from Donetsk. I study at the university in my native town and my future profession is bookkeeping. I live with my parents and my elder sister Lena. We are a friendly family. Lena is 2 years older than me. We share our room and tell all our secrets to each other.
-              We are very much alike: open-hearted, smart and merry. That's why we have a lot of friends. I like organizing parties for our friends as we often gather to­gether, discuss our plans and have fun. My hobby is music. I play the guitar and write my own songs. They say, I have a nice voice. My family and friends often ask me to sing to guitar their favorite songs. Cooking is also my hobby. My Mom cooks very well. She has taught me how to cook a lot of delicious dishes from Ukrainian and Russian cuisine. My favorite dish is French soup, which I cook for the whole family.
-              In the evening, I often watch TV with my family and discuss my plans for the next day. On weekends, I often meet my friends or stay at home and read books. I like novels by Dariya Dontsova. I sometimes discuss her style and ideas with my sister. Literature, cooking, TV — I have a lot of topics to talk about and make new friends.
-              Let me introduce myself. My name is Mariya I am a 20-year-old student from Donetsk. I study at the university in my native town and my future profession is bookkeeping. I live with my parents and my elder sister Lena. We are a friendly family. Lena is 2 years older than me. We share our room and tell all our secrets to each other.
-              We are very much alike: open-hearted, smart and merry. That's why we have a lot of friends. I like organizing parties for our friends as we often gather to­gether, discuss our plans and have fun. My hobby is music. I play the guitar and write my own songs. They say, I have a nice voice. My family and friends often ask me to sing to guitar their favorite songs. Cooking is also my hobby. My Mom cooks very well. She has taught me how to cook a lot of delicious dishes from Ukrainian and Russian cuisine. My favorite dish is French soup, which I cook for the whole family.
-              In the evening, I often watch TV with my family and discuss my plans for the next day. On weekends, I often meet my friends or stay at home and read books. I like novels by Dariya Dontsova. I sometimes discuss her style and ideas with my sister. Literature, cooking, TV — I have a lot of topics to talk about and make new friends.
-              Let me introduce myself. My name is Mariya I am a 20-year-old student from Donetsk. I study at the university in my native town and my future profession is bookkeeping. I live with my parents and my elder sister Lena. We are a friendly family. Lena is 2 years older than me. We share our room and tell all our secrets to each other.
-              We are very much alike: open-hearted, smart and merry. That's why we have a lot of friends. I like organizing parties for our friends as we often gather to­gether, discuss our plans and have fun. My hobby is music. I play the guitar and write my own songs. They say, I have a nice voice. My family and friends often ask me to sing to guitar their favorite songs. Cooking is also my hobby. My Mom cooks very well. She has taught me how to cook a lot of delicious dishes from Ukrainian and Russian cuisine. My favorite dish is French soup, which I cook for the whole family.
-              In the evening, I often watch TV with my family and discuss my plans for the next day. On weekends, I often meet my friends or stay at home and read books. I like novels by Dariya Dontsova. I sometimes discuss her style and ideas with my sister. Literature, cooking, TV — I have a lot of topics to talk about and make new friends.
-            </p>
-          </li>
-       </ul>
+      <section onScroll={ e => handleScroll(e)} className='MainCenter'>
+        <span>
+          <input type="text" onChange={ e => SearchValue(e)} name="" id="" placeholder="Search" />
+          <p>Sort to</p>
+          <select onChange={ e => SortToValue(e)}>
+            <option value="desc">From A to Z</option>
+            <option value="asc">From Z to A</option>
+          </select>
+          <p>Sort by</p>
+          <select onChange={ e => SortByValue(e)}>
+            <option value="created_at">Date of creation</option>
+            <option value="title">Title</option>
+            <option value="likes_count">Likes count</option>
+         </select>
+        </span>
+        {ListTitile}
+        <Modal selectedPost={selectedPost} setSelectedPost={setSelectedPost, selectedPost}>
+          <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost)}} icon={faCircleXmark} /></span>
+          <form id="CreateNewPost" onSubmit={e => { buttonFunction(e, selectedPost) }}>
+            <p>Title post</p>
+            <input type="text" name="post[title]" />
+            <p>Body post</p>
+            <textarea className="PostBody" type="text" name="post[body]"></textarea>
+            <input id="InptImg" type="hidden" name="post[image_link]"/>
+            <button type="submit">{buttonCreatePost ? "Create" : "Update"} post</button>
+          </form>
+        </Modal>
       </section>
     )
 }

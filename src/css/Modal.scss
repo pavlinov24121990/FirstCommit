@@ -1,0 +1,96 @@
+.modal {
+  width: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.contentModal {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: whitesmoke;
+  width: 100vh;
+  transform: scale(0.5);
+  transition: 0.4s all;
+}
+
+.contentModal.active {
+  transform: scale(1);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.modal.active {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.CreateUpdatePost {
+  border-radius: 20px;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
+
+  span:hover {
+    transform: scale(1.4);
+  }
+
+  form {
+    text-align: center;
+
+    p {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 30px;
+      line-height: 20px;
+      font-family: "Dancing Script", cursive;
+      font-style: normal;
+      font-weight: 700;
+      color: rgb(39, 39, 38);
+      padding: 5px;
+    }
+    input,
+    textarea {
+      display: inline-block;
+      width: 100vh;
+      margin-bottom: 30px;
+      padding: 5px;
+      border-radius: 20px;
+      height: 30vh;
+    }
+    input {
+      height: auto;
+      text-align: center;
+    }
+    button {
+      display: inline-block;
+      border-radius: 6px;
+      font-size: 20px;
+      line-height: 48px;
+      width: 332px;
+      background-color: #1877f2;
+      margin-bottom: 10px;
+      cursor: pointer;
+      color: antiquewhite;
+      border-style: none;
+      font-family: "Dancing Script", cursive;
+      font-style: normal;
+      font-weight: 700;
+    }
+    & button:hover {
+      font-size: 25px;
+      box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+    }
+  }
+}

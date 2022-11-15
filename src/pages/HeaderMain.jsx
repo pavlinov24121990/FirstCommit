@@ -20,6 +20,9 @@ const NameFlipX = styled.div`animation: 7s ${keyframes`${flipOutY}`} infinite`;
 const SvglFlipY = styled.div`animation: 7s ${keyframes`${rotateOut}`} infinite`;
 const EmailzoomInDown = styled.div`animation: 7s ${keyframes`${zoomInDown}`} infinite`;
 // Finish anime
+
+
+
 const HeaderMain = ({ setPasswordDigest, passwordDigest }) => {
   const [userName, setUserName] = useState()
   const [email, setEmail] = useState()
@@ -27,22 +30,24 @@ const HeaderMain = ({ setPasswordDigest, passwordDigest }) => {
   function Logout() {
     setPasswordDigest("")
   }
-
+  
+  
   const showUser = async (e) => {
     let request = await fetch('https://study-rails-blog-api.herokuapp.com/api/v1/user', {
     method: 'GET',
     headers: {
     Authorization: `Bearer ${passwordDigest}`
     }
-  }) 
-  let result = await request.json()
-    console.log(result)
-    setUserName(result.full_name)
-    setEmail(result.email)
-    console.log(userName)
-  }
+    }) 
+    let result = await request.json()
+    
+      setUserName(result.full_name)
+      setEmail(result.email)
+    
+    }
   showUser()
-
+  
+  
 
     return (
       <section className='HeaderrMain'>

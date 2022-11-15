@@ -11,9 +11,9 @@ const Main = ({setPasswordDigest, passwordDigest}) => {
   return (
       <div className="MainMain">
         <NavBar setPasswordDigest={setPasswordDigest}/>
-        <div>
+        <div className="CenterCenterCenter">
           <HeaderMain setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest} />
-          <MainCenter setPasswordDigest={setPasswordDigest}/>
+          <MainCenter setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest}/>
         </div>
       </div>
       
