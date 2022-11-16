@@ -14,7 +14,9 @@ function App() {
   useEffect(() => {
     let tokeen = localStorage.getItem("passwordDigest")
     setPasswordDigest(tokeen)
-  },[])
+  }, [])
+  
+
 
   useEffect(() => {
     localStorage.setItem("passwordDigest",  passwordDigest);

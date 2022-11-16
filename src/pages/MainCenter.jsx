@@ -20,26 +20,27 @@ const MainCenter = ({ passwordDigest }) => {
   const [sortTo, setSortTo] = useState("sort_to=desc")
   const [pagePost, setPagePost] = useState("")
   const [page, setPage] = useState(2)
-
+  const [handleScrollStop, setHandleScrollStop] = useState(true) 
 
 
   
 
   const handleScroll = e => {
     if (e.currentTarget.scrollTop + e.currentTarget.clientHeight >= e.currentTarget.scrollHeight) {
-      numberPage(); PagePostValue()
-    } 
+      if (handleScrollStop) {
+        numberPage(e);
+        PagePostValue(e);
+        
+      }
+    }
   };
 
-
-  console.log(page)
-
   function numberPage() {
-    setPage(page + 1)
+    setPage(page + 1)    
   }
 
   function PagePostValue() {
-    setPagePost(`&page=${page}`)
+    setPagePost(`&page=${page}`);
   }
 
   function SortToValue(e) {
@@ -58,11 +59,6 @@ const MainCenter = ({ passwordDigest }) => {
     }
   }
   
-
-  
- 
-
-
   function SortByValue(e) {
     if (e.target.value.length) {
       setSortBy(`sort_by=${e.target.value}`)
@@ -71,7 +67,6 @@ const MainCenter = ({ passwordDigest }) => {
     }
   }
   
-
   async function CreateNewPost(e) {
     e.preventDefault();
     const forma = document.getElementById('CreateNewPost');
@@ -86,14 +81,13 @@ const MainCenter = ({ passwordDigest }) => {
     forma.reset()
     let result = await request.json();
     if (request.ok) {
-      PostList()
       setSelectedPost(null)
-    } else {
-      
+      listPost.unshift(result)
+      setListPost([...listPost])
     }
   }
 
-  async function CreateLike (e, post) {
+  async function CreateLike(e, post) {
     e.preventDefault();
     let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts/${post.id}/likes`, {
       method: 'POST',
@@ -104,76 +98,86 @@ const MainCenter = ({ passwordDigest }) => {
     let result = await request.json();
     console.log(result)
     if (request.ok) {
-      PostList()
-    } else {
     }
   }
 
-  async function UpdatePost(e, post) {
+  async function UpdatePost(e, id) {
     e.preventDefault();
     const forma = document.getElementById('CreateNewPost');
     const formaData = new FormData(forma);
-    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts/${post.id}`, {
+    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts/${id}`, {
       method: 'PUT',
       body: formaData,
       headers: {
         Authorization: `Bearer ${passwordDigest}`
       }
     });
-    console.log (formaData)
     forma.reset()
     let result = await request.json();
     if (request.ok) {
-      PostList()
+      listPost.find(postlisl => {
+        if (postlisl.id === id) {
+          postlisl.title = result.title;
+          postlisl.body = result.body;
+        }
+        return setListPost([...listPost])
+      })
       setSelectedPost(null)
-    } else {
     }
   }
- 
-  async function DeletePost(e, post) {
+  
+  async function DeletePost(e, id) {
     e.preventDefault();
-    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts/${post.id}`, {
+    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts/${id}`, {
       method: 'DELETE',
       headers: {
-      Authorization: `Bearer ${passwordDigest}`
-       }
+        Authorization: `Bearer ${passwordDigest}`
+      }
     });
     if (request.ok) {
-      PostList()
-      
+      setListPost([...listPost.filter(listPost => listPost.id !== id)])
+      console.log(listPost)
     }
   }
+    
 
-  function buttonFunction (e, post) {
+  function buttonFunction(e, id) {
     if (buttonCreatePost) {
           CreateNewPost(e)
     } else {
-          UpdatePost(e, post)
+      UpdatePost(e, id)
+      
         }
   }
 
-
-  
-  async function PostList() {
-    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts?${pagePost}${searchText}&${sortBy}&${sortTo}`, {
+  async function SearchSortPost() {
+    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts?${searchText}&${sortBy}&${sortTo}`, {
       method: 'GET'
-      
     });
-    console.log(request)
     let result = await request.json();
-    setListPost([...listPost,...result])
-    console.log(result)
+    setListPost(result)
+    setHandleScrollStop(true)
+    setPage(2)
   }
-  console.log(listPost)
+  useEffect(() => {
+    SearchSortPost()
+  },[searchText, sortBy, sortTo])
+  
+
+  async function PostList(e) {
+    let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts?${pagePost}&${searchText}&${sortBy}&${sortTo}`, {
+      method: 'GET'
+    });   
+    let result = await request.json();
+    console.log(request)
+    setListPost([...listPost, ...result])
+    if (result === []) {
+    setHandleScrollStop(false)
+    }
+  } 
   useEffect(() => {
     PostList()
-  },[searchText, sortBy, sortTo, pagePost])
-  
-
- 
-  
-
-  
+  },[pagePost])
 
 
   const ListTitile = listPost && listPost.map((post, setCreateLikeLike) => {
@@ -181,13 +185,13 @@ const MainCenter = ({ passwordDigest }) => {
               <li>
                 <div>
                   <span>
-                    <FontAwesomeIcon onClick={() => { setSelectedPost(post); setButtonCreatePost(true) }} icon={faPlus} />
+                    <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost(true); }} icon={faPlus} />
                   </span>
                   <span>
-                    <FontAwesomeIcon onClick={e => { setSelectedPost(post); setButtonCreatePost(false);  }} icon={faPenToSquare} />
+                    <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost(false);  }} icon={faPenToSquare} />
                   </span>
                   <span>
-                    <FontAwesomeIcon onClick={ e => DeletePost(e, post)} icon={faMinus} />
+                    <FontAwesomeIcon onClick={ e => DeletePost(e, post.id)} icon={faMinus} />
                   </span>
                 </div>
                 <h2>{post.title}</h2>
@@ -198,7 +202,7 @@ const MainCenter = ({ passwordDigest }) => {
                   {post.user.full_name}
                 </p>
                 <span>   
-                <FontAwesomeIcon onClick={ e => CreateLike(e, post, setCreateLikeLike)} icon={faHeart} />
+                <FontAwesomeIcon onClick={ e => CreateLike(e, post.id)} icon={faHeart} />
                 </span>
               </div>
             </ul>
@@ -225,7 +229,7 @@ const MainCenter = ({ passwordDigest }) => {
   
   
 
-
+    
     return (
       <section onScroll={ e => handleScroll(e)} className='MainCenter'>
         <span>
@@ -243,7 +247,7 @@ const MainCenter = ({ passwordDigest }) => {
          </select>
         </span>
         {ListTitile}
-        <Modal selectedPost={selectedPost} setSelectedPost={setSelectedPost, selectedPost}>
+        <Modal selectedPost={selectedPost} setSelectedPost={setSelectedPost}>
           <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost)}} icon={faCircleXmark} /></span>
           <form id="CreateNewPost" onSubmit={e => { buttonFunction(e, selectedPost) }}>
             <p>Title post</p>

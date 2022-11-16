@@ -12,7 +12,7 @@ function Routee({ setPasswordDigest, passwordDigest }) {
   return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Welcome setPasswordDigest={setPasswordDigest} />} />
+          <Route path="/" element={<Welcome passwordDigest={passwordDigest} setPasswordDigest={setPasswordDigest} />} />
           <Route path="CreateANewAccount" element={<CreateANewAccount setPasswordDigest={setPasswordDigest}  passwordDigest={passwordDigest}/>} />
           <Route path="ForgotAccount" element={<ForgotAccount />} />
           <Route path="*" element={<NotFoundPage />} />
