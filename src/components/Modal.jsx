@@ -8,13 +8,13 @@ import '../css/MainCenterSass.scss'
 
 
 
-const Modal = ({selectedPost, children, selectedComment}) => {
+const Modal = ({selectedPost, children, selectedComment, updateComment}) => {
 
 
 
   return (
-    <div className={selectedPost || selectedComment ? "modal active" : "modal"}>
-      <div className={selectedPost || selectedComment ? "contentModal active CreateUpdatePost" : "contentModal CreateUpdatePost"}>
+    <div className={selectedPost || selectedComment || updateComment ? "modal active" : "modal"}>
+      <div className={selectedPost || selectedComment || updateComment ? "contentModal active CreateUpdatePost" : "contentModal CreateUpdatePost"}>
         {children}
       </div>
     </div>

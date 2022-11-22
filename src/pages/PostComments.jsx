@@ -28,15 +28,14 @@ const PostComments = ({passwordDigest}) => {
 
   
 
-    console.log(listComments)
     
     
     
   let ListCommentsSee = listComments && listComments.map((comments) => {
-    return <Commets key={comments.id} comments={comments}/>
+    return <Commets key={comments.id} id={id} comments={comments} passwordDigest={passwordDigest} listComments={listComments} setListComments={setListComments} setSelectedComment={setSelectedComment} selectedComment={selectedComment} selectedPost={selectedPost} setSelectedPost={setSelectedPost}/>
   })
   
-    
+  
   useEffect(() => {
     ShowPost(id, setTitle, setBody, setName, setListComments)
   },[setTitle, setBody])

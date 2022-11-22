@@ -2,30 +2,60 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 99%;
   margin-bottom: 10px;
-  ul {
-    width: 100%;
-    padding: 30px 10px;
+  flex-direction: column;
+  padding: 10px 5px;
+  border-radius: 50px;
+  background-color: whitesmoke;
+  text-align: start;
+
+  p {
+    display: inline-block;
     text-align: center;
+    border: 2px solid black;
     border-radius: 50px;
+    width: 98%;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 24px;
+    line-height: 24px;
+    font-family: "Dancing Script", cursive;
+    font-style: normal;
+    font-weight: 700;
     background-color: whitesmoke;
-    li {
-      padding: 10px;
-      p {
-        display: inline-block;
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-        font-size: 24px;
-        line-height: 24px;
-        font-family: "Dancing Script", cursive;
-        font-style: normal;
-        font-weight: 700;
-        background-color: whitesmoke;
-        overflow: auto;
-        word-wrap: break-word;
-        line-break: anywhere;
+    word-wrap: break-word;
+    line-break: anywhere;
+    margin-bottom: 10px;
+  }
+  .commentProps {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 97%;
+    .fullName {
+      display: inline-block;
+      font-size: 20px;
+      line-height: 24px;
+      font-family: "Dancing Script", cursive;
+      font-style: normal;
+      font-weight: 700;
+      color: #807b7b;
+      border-radius: 50px;
+      width: 100%;
+      text-align: start;
+      padding: 0px;
+      border: none;
+    }
+    svg {
+      display: inline-block;
+      margin-right: 30px;
+      opacity: 0.5;
+      &:hover {
+        transform: scale(1.5);
+        transition: 2s;
+        opacity: 1;
       }
     }
   }

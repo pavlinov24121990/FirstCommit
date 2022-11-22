@@ -26,9 +26,6 @@ export async function UpdatePost(e, id, passwordDigest, setSelectedPost, setList
       setBody(result.body);
       setSelectedPost(null)
       }
-     
-      
-      
     }
 }
   
