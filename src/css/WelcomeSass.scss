@@ -1,0 +1,185 @@
+.Main {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(../Foto//BackMain.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  .DivErrors {
+    top: -5%;
+    position: absolute;
+    text-align: center;
+    width: 324px;
+    z-index: 1;
+    color: red;
+    border: 1px solid #ff253a;
+    padding: 5px;
+    border-radius: 50px;
+    background-color: turquoise;
+    transform: skewX(10deg);
+    box-shadow: 2px 1px 19px black;
+    &::before {
+      content: "";
+      border: 14px solid transparent;
+      border-top: 16px solid turquoise;
+      right: 5%;
+      top: 100%;
+      position: absolute;
+    }
+  }
+  .DivErrorsPass {
+    position: absolute;
+    text-align: center;
+    width: 324px;
+    z-index: 1;
+    color: red;
+    border: 1px solid #ff253a;
+    padding: 5px;
+    border-radius: 50px;
+    top: 63px;
+    background-color: turquoise;
+    transform: skewX(10deg);
+    box-shadow: 2px 1px 19px black;
+    &::before {
+      content: "";
+      border: 14px solid transparent;
+      border-bottom: 16px solid turquoise;
+      right: 8%;
+      bottom: 99%;
+      position: absolute;
+    }
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    background: white;
+    h1,
+    h2 {
+      font-size: 20px;
+      line-height: 40px;
+      font-family: "Dancing Script", cursive;
+      font-style: normal;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 30px;
+      padding-top: 30px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      background: white;
+      padding: 30px 30px 5px 30px;
+      position: relative;
+      input {
+        font-size: 18px;
+        line-height: 36px;
+        font-family: "Dancing Script", cursive;
+        font-style: normal;
+        font-weight: 700;
+        border-style: solid black;
+        margin-bottom: 10px;
+        width: 324px;
+        padding: 5px;
+      }
+      .MainContentFormWelcomeDiv {
+        margin-bottom: 53px;
+        position: relative;
+        svg {
+          top: 25%;
+          right: 5%;
+          width: 16px;
+          height: 16px;
+          position: absolute;
+          color: #42b72a;
+          cursor: pointer;
+          &:hover {
+            transition: 1s;
+            width: 24px;
+            height: 24px;
+            color: #205714;
+          }
+        }
+      }
+      button {
+        border-radius: 6px;
+        font-size: 20px;
+        line-height: 48px;
+        width: 332px;
+        background-color: #1877f2;
+        margin-bottom: 10px;
+        cursor: pointer;
+        color: antiquewhite;
+        border-style: none;
+        font-family: "Dancing Script", cursive;
+        font-style: normal;
+        font-weight: 700;
+        box-shadow: 2px 1px 19px black;
+      }
+      button:hover {
+        transition: 2s;
+        font-size: 25px;
+        box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6),
+          0 1px 2px hsla(0, 0%, 0%, 0.2);
+      }
+    }
+    .CreateANewAccount {
+      display: inline-block;
+      background-color: #42b72a;
+      color: antiquewhite;
+      padding: 10px;
+      border-radius: 50px;
+      &:hover {
+        background-color: #205714;
+      }
+    }
+    .ForgotAccount {
+      box-shadow: 2px 1px 19px rgb(240, 234, 234);
+    }
+    a {
+      color: #1877f2;
+      font-size: 17px;
+      font-family: "Dancing Script", cursive;
+      font-style: normal;
+      font-weight: 700;
+      text-decoration: none;
+      margin-bottom: 10px;
+      box-shadow: 2px 1px 19px black;
+      &:hover {
+        transition: 2s;
+        transform: scale(1.3);
+      }
+    }
+    span {
+      color: #96999e;
+      position: relative;
+      margin-bottom: 10px;
+      font-family: "Dancing Script", cursive;
+      font-style: normal;
+      font-weight: 700;
+      &::after {
+        content: "";
+        height: 2px;
+        position: absolute;
+        top: 58%;
+        background-color: #96999e;
+        width: 152px;
+        left: 120%;
+      }
+      &::before {
+        content: "";
+        height: 2px;
+        position: absolute;
+        top: 58%;
+        background-color: #96999e;
+        width: 152px;
+        right: 120%;
+      }
+    }
+  }
+}

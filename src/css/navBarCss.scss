@@ -24,6 +24,7 @@
         color: antiquewhite;
       }
       a:hover {
+        transition: 2s;
         transform: scale(1.2);
         color: rgb(238, 205, 161);
       }
