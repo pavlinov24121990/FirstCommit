@@ -11,7 +11,6 @@ export async function CreateComments(e, id, passwordDigest, setListComments, set
     });
     forma.reset()
     let result = await request.json();
-    console.log(result)
     if (request.ok) {
       setListComments([result, ...listComments])
       setSelectedComment(null)

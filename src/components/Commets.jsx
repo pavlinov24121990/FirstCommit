@@ -11,14 +11,7 @@ import { UpdateCommets } from "../Helpers/UpdateCommets";
 
 const Commets = ({ id, comments, passwordDigest, listComments, setListComments, selectedComment, setSelectedComment, selectedPost,
 setSelectedPost }) => {
-  
   const [updateComment, setUpdateComment] = useState()
-
-
-  
-  
-  
-
   return (
    <div className="comment">
       <p>
@@ -33,13 +26,12 @@ setSelectedPost }) => {
       <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost, selectedPost, setSelectedComment, selectedComment, setUpdateComment, updateComment)}} icon={faCircleXmark} /></span>
       <form onSubmit={ e => UpdateCommets(e, id, comments.id, passwordDigest, listComments, setListComments, setUpdateComment)} id="UpdateComment">
         <p>Comment for post</p>
-        <textarea className="PostBody" type="text" name="comment[body]"></textarea>
+        <textarea defaultValue={updateComment && listComments.find(el => comments.id === el.id).body} className="PostBody" type="text" name="comment[body]"></textarea>
         <button type="submit">Update comment for post</button>
       </form>
       </Modal>
     </div>
   )  
 }
-
 
 export {Commets}

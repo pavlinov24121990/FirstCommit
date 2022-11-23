@@ -1,5 +1,5 @@
-import { NavBar } from './NavBar'
-import { HeaderMain } from './HeaderMain'
+import { NavBar } from '../components/NavBar'
+import { HeaderMain } from '../components/HeaderMain'
 import "../css/HardReset.css"
 import '../css/Fonts.css'
 import '../css/MainSass.scss'

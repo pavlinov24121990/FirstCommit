@@ -24,7 +24,9 @@ const MainCenter = ({ passwordDigest }) => {
   const [sortTo, setSortTo] = useState("sort_to=desc")
   const [pagePost, setPagePost] = useState("")
   const [page, setPage] = useState(2)
-  const [handleScrollStop, setHandleScrollStop] = useState(true) 
+  const [handleScrollStop, setHandleScrollStop] = useState(true)
+  const [selectedComment, setSelectedComment] = useState()
+  const [updateComment, setUpdateComment] = useState()
 
   function numberPage() {
     setPage(page + 1)    
@@ -61,8 +63,10 @@ const MainCenter = ({ passwordDigest }) => {
   function buttonFunction(e, id) {
     if (buttonCreatePost) {
       CreateNewPost(e, passwordDigest, setSelectedPost, setListPost, listPost)
+      
     } else {
       UpdatePost(e, id, passwordDigest, setSelectedPost, setListPost, listPost)
+      
       }
   }
 
@@ -77,18 +81,18 @@ const MainCenter = ({ passwordDigest }) => {
   const ListTitile = listPost && listPost.map((post) => {
     return <MapList key={post.id} post={post} setSelectedPost = {setSelectedPost} setButtonCreatePost={setButtonCreatePost} passwordDigest={passwordDigest} listPost={listPost} setListPost={setListPost}/>
   });
-
+  
   return (
     <section onScroll={ e => handleScroll(e, numberPage, PagePostValue, handleScrollStop)} className='MainCenter'>
       <SpanMainSerchAndSort SearchValue={SearchValue} SortToValue={SortToValue} SortByValue={SortByValue}/>
       {ListTitile}
       <Modal selectedPost={selectedPost} setSelectedPost={setSelectedPost}>
-      <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost)}} icon={faCircleXmark} /></span>
+      <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost, selectedPost, setSelectedComment, selectedComment, setUpdateComment, updateComment)}} icon={faCircleXmark} /></span>
       <form id="CreateNewPost" onSubmit={e => { buttonFunction(e, selectedPost) }}>
         <p>Title post</p>
-        <input type="text" name="post[title]" />
+        <input defaultValue={selectedPost && listPost.find(el => selectedPost === el.id).title} type="text" name="post[title]" />
         <p>Body post</p>
-        <textarea className="PostBody" type="text" name="post[body]"></textarea>
+        <textarea defaultValue={selectedPost && listPost.find(el => selectedPost === el.id).body}  className="PostBody" type="text" name="post[body]"></textarea>
         <input id="InptImg" type="hidden" name="post[image_link]"/>
         <button type="submit">{buttonCreatePost ? "Create" : "Update"} post</button>
       </form>

@@ -25,7 +25,7 @@ const PostComments = ({passwordDigest}) => {
   const [listPost, setListPost] = useState([])
   const [selectedComment, setSelectedComment] = useState()
   const [listComments, setListComments] = useState([])
-
+  const [updateComment, setUpdateComment] = useState()
   
 
     
@@ -38,8 +38,9 @@ const PostComments = ({passwordDigest}) => {
   
   useEffect(() => {
     ShowPost(id, setTitle, setBody, setName, setListComments)
-  },[setTitle, setBody])
+  }, [setTitle, setBody])
   
+ 
   return (
     <section className='MainCenter'>
       <div className="centerPost">
@@ -61,19 +62,19 @@ const PostComments = ({passwordDigest}) => {
       </div>
       {ListCommentsSee}
      <Modal selectedPost={selectedPost} setSelectedPost={setSelectedPost}>
-      <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost, selectedPost, setSelectedComment, selectedComment)}} icon={faCircleXmark} /></span>
+      <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost, selectedPost, setSelectedComment, selectedComment, setUpdateComment, updateComment)}} icon={faCircleXmark} /></span>
       <form onSubmit={ e => UpdatePost(e, id, passwordDigest, setSelectedPost, setListPost, listPost, setTitle, setBody)} id="CreateNewPost">
         <p>Title post</p>
-        <input type="text" name="post[title]" />
+        <input defaultValue={title} type="text" name="post[title]" />
         <p>Body post</p>
-        <textarea className="PostBody" type="text" name="post[body]"></textarea>
+        <textarea defaultValue={body} className="PostBody" type="text" name="post[body]"></textarea>
         <input id="InptImg" type="hidden" name="post[image_link]"/>
         <button type="submit">Update post</button>
       </form>
       </Modal>
       {/* Create Comment for post */}
       <Modal selectedComment={selectedComment} setSelectedComment={setSelectedComment}>
-      <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost, selectedPost, setSelectedComment, selectedComment)}} icon={faCircleXmark} /></span>
+      <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost, selectedPost, setSelectedComment, selectedComment, setUpdateComment, updateComment)}} icon={faCircleXmark} /></span>
       <form onSubmit={e => CreateComments(e, id, passwordDigest, setListComments, setSelectedComment, listComments)} id="CreateNewComment">
         <p>Comment for post</p>
         <textarea className="PostBody" type="text" name="comment[body]"></textarea>
