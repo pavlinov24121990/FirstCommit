@@ -26,6 +26,7 @@ const PostComments = ({passwordDigest}) => {
   const [selectedComment, setSelectedComment] = useState()
   const [listComments, setListComments] = useState([])
   const [updateComment, setUpdateComment] = useState()
+  const [buttonCreatePost, setButtonCreatePost] = useState("")
   
 
     
@@ -62,7 +63,7 @@ const PostComments = ({passwordDigest}) => {
       </div>
       {ListCommentsSee}
      <Modal selectedPost={selectedPost} setSelectedPost={setSelectedPost}>
-      <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost, selectedPost, setSelectedComment, selectedComment, setUpdateComment, updateComment)}} icon={faCircleXmark} /></span>
+      <span><FontAwesomeIcon onClick={e => {ModalOff(setSelectedPost, setSelectedComment, setUpdateComment, setButtonCreatePost)}} icon={faCircleXmark} /></span>
       <form onSubmit={ e => UpdatePost(e, id, passwordDigest, setSelectedPost, setListPost, listPost, setTitle, setBody)} id="CreateNewPost">
         <p>Title post</p>
         <input defaultValue={title} type="text" name="post[title]" />
@@ -74,7 +75,7 @@ const PostComments = ({passwordDigest}) => {
       </Modal>
       {/* Create Comment for post */}
       <Modal selectedComment={selectedComment} setSelectedComment={setSelectedComment}>
-      <span><FontAwesomeIcon onClick={e => {ModalOff(e, setSelectedPost, selectedPost, setSelectedComment, selectedComment, setUpdateComment, updateComment)}} icon={faCircleXmark} /></span>
+      <span><FontAwesomeIcon onClick={e => {ModalOff(setSelectedPost, setSelectedComment, setUpdateComment, setButtonCreatePost)}} icon={faCircleXmark} /></span>
       <form onSubmit={e => CreateComments(e, id, passwordDigest, setListComments, setSelectedComment, listComments)} id="CreateNewComment">
         <p>Comment for post</p>
         <textarea className="PostBody" type="text" name="comment[body]"></textarea>

@@ -6,6 +6,9 @@ import "../css/HardReset.css"
 import '../css/Fonts.css'
 import '../css/MainSass.scss'
 import { About } from "../pages/About";
+import { Servise } from "../pages/Servise";
+import { Gallery } from "../pages/Gallery";
+import { Feedback } from "../pages/Feedback";
 
 function MainRoute({setPasswordDigest, passwordDigest}) {
   return (
@@ -14,7 +17,10 @@ function MainRoute({setPasswordDigest, passwordDigest}) {
 				<Route path="/" element={<Main setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest} />}>
 					<Route index element={<MainCenter setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest} />}/>
 					<Route path="post/:id" element={<PostComments passwordDigest={passwordDigest} />} />
-					<Route path="About" element={<About/>} />
+					<Route path="About" element={<About />} />
+					<Route path="Servise" element={<Servise />} />
+					<Route path="Gallery" element={<Gallery />} />
+					<Route path="Feedback" element={<Feedback/>} />
 				</Route>
 			</Routes>
 		</BrowserRouter>

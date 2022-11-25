@@ -27,6 +27,7 @@
   align-items: flex-end;
   justify-content: center;
   font-size: 30px;
+  width: 500px;
 }
 
 .modal.active {
@@ -41,6 +42,7 @@
   justify-content: flex-end;
   flex-direction: column;
   align-items: flex-end;
+  width: 500px;
 
   span:hover {
     transform: scale(1.4);
@@ -63,11 +65,12 @@
     input,
     textarea {
       display: inline-block;
-      width: 100vh;
+      width: 400px;
       margin-bottom: 30px;
       padding: 5px;
       border-radius: 20px;
       height: 30vh;
+      resize: none;
     }
     input {
       height: auto;
