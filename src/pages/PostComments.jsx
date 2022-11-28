@@ -39,7 +39,7 @@ const PostComments = ({passwordDigest}) => {
   
   useEffect(() => {
     ShowPost(id, setTitle, setBody, setName, setListComments)
-  }, [setTitle, setBody])
+  }, [])
   
  
   return (
@@ -66,9 +66,9 @@ const PostComments = ({passwordDigest}) => {
       <span><FontAwesomeIcon onClick={e => {ModalOff(setSelectedPost, setSelectedComment, setUpdateComment, setButtonCreatePost)}} icon={faCircleXmark} /></span>
       <form onSubmit={ e => UpdatePost(e, id, passwordDigest, setSelectedPost, setListPost, listPost, setTitle, setBody)} id="CreateNewPost">
         <p>Title post</p>
-        <input defaultValue={title} type="text" name="post[title]" />
+        <input type="text" name="post[title]" />
         <p>Body post</p>
-        <textarea defaultValue={body} className="PostBody" type="text" name="post[body]"></textarea>
+        <textarea className="PostBody" type="text" name="post[body]"></textarea>
         <input id="InptImg" type="hidden" name="post[image_link]"/>
         <button type="submit">Update post</button>
       </form>

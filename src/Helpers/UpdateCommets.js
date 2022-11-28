@@ -11,7 +11,6 @@ export async function UpdateCommets(e, id, commentsId, passwordDigest, listComme
     });
     forma.reset()
     let result = await request.json();
-    console.log(result)
     if (request.ok) {
       listComments.find(commets => {
         if (commets.id === commentsId) {

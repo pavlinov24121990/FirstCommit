@@ -6,14 +6,15 @@ import { faPenToSquare, faPlus, faMinus, faHeart } from '@fortawesome/free-solid
 import { Link } from 'react-router-dom';
 
 
-const MapList = ({ post, setSelectedPost, setButtonCreatePost, passwordDigest, listPost, setListPost, setTextAreaValue, setTextAreaValueBody}) => {
+const MapList = ({ post, setSelectedPost, setButtonCreatePost, passwordDigest, listPost, setListPost}) => {
 
+  
   return (
     <div className="centerPost">
       <div>
         <div>
-          <FontAwesomeIcon onClick={e => { setSelectedPost(true); setButtonCreatePost(""); setTextAreaValue(e.target.value = ""); setTextAreaValueBody(e.target.value = "") }} icon={faPlus} />
-          <FontAwesomeIcon onClick={e => { setSelectedPost(true); setButtonCreatePost(post.id); setTextAreaValue(e.target.value = post.body); setTextAreaValueBody(e.target.value = post.title)}} icon={faPenToSquare} />
+          <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost("");}} icon={faPlus} />
+          <FontAwesomeIcon onClick={ e => { setSelectedPost(post.id); setButtonCreatePost(post.id); }} icon={faPenToSquare} />
           <FontAwesomeIcon onClick={ e => DeletePost(e, post.id, passwordDigest, listPost, setListPost)} icon={faMinus} />
         </div>
         <h2>{post.title}</h2>

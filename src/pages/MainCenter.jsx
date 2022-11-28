@@ -28,8 +28,7 @@ const MainCenter = ({ passwordDigest }) => {
   const [handleScrollStop, setHandleScrollStop] = useState(true)
   const [selectedComment, setSelectedComment] = useState()
   const [updateComment, setUpdateComment] = useState()
-  const [TextAreaValue, setTextAreaValue] = useState()
-  const [TextAreaValueBody, setTextAreaValueBody] = useState()
+  
 
   function numberPage() {
     setPage(page + 1)    
@@ -80,20 +79,10 @@ const MainCenter = ({ passwordDigest }) => {
   }, [pagePost])
 
   const ListTitile = listPost && listPost.map((post) => {
-    return <MapList key={post.id} post={post} setSelectedPost={setSelectedPost} setButtonCreatePost={setButtonCreatePost} passwordDigest={passwordDigest} listPost={listPost} setListPost={setListPost} setTextAreaValue={setTextAreaValue} setTextAreaValueBody={setTextAreaValueBody}/>
+    return <MapList key={post.id} post={post} setSelectedPost={setSelectedPost} setButtonCreatePost={setButtonCreatePost} passwordDigest={passwordDigest} listPost={listPost} setListPost={setListPost}/>
   });
   
-  const ValueSee = (e, setTextAreaValue, buttonCreatePost, listPost, setTextAreaValueBody) => {
-    setTextAreaValue(e.target.value)
-    setTextAreaValueBody(e.target.value)
-    if (buttonCreatePost) {
-      setTextAreaValue(e.target.value = listPost.find(el => buttonCreatePost === el.id).body)
-      setTextAreaValueBody(e.target.value = listPost.find(el => buttonCreatePost === el.id).title)
-    } else {
-      setTextAreaValue(e.target.value = "")
-      setTextAreaValueBody(e.target.value = "")
-    }
-  }
+  
   
   
 
@@ -105,9 +94,9 @@ const MainCenter = ({ passwordDigest }) => {
       <span><FontAwesomeIcon onClick={e => {ModalOff(setSelectedPost, setSelectedComment, setUpdateComment, setButtonCreatePost)}} icon={faCircleXmark} /></span>
       <form id="CreateNewPost" onSubmit={e => { buttonFunction(e, selectedPost) }}>
         <p>Title post</p>
-        <input defaultValue={TextAreaValueBody} onFocus={ e => ValueSee(e, setTextAreaValue, buttonCreatePost, listPost, setTextAreaValueBody)} type="text" name="post[title]" />
+        <input type="text" name="post[title]" />
         <p>Body post</p>
-        <textarea defaultValue={TextAreaValue} onFocus={ e => ValueSee(e, setTextAreaValue, buttonCreatePost, listPost, setTextAreaValueBody)} className="PostBody" type="text" name="post[body]"></textarea>
+        <textarea className="PostBody" type="text" name="post[body]"></textarea>
         <input id="InptImg" type="hidden" name="post[image_link]"/>
         <button type="submit">{buttonCreatePost ? "Update" : "Create"} post</button>
       </form>

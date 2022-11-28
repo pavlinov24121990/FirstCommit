@@ -18,6 +18,7 @@ const EmailzoomInDown = styled.div`animation: 7s ${keyframes`${zoomInDown}`} inf
 const HeaderMain = ({ setPasswordDigest, passwordDigest }) => {
   const [userName, setUserName] = useState()
   const [email, setEmail] = useState()
+
   function Logout() {
     setPasswordDigest("")
   }

@@ -29,7 +29,7 @@ const Commets = ({ id, comments, passwordDigest, listComments, setListComments, 
       <span><FontAwesomeIcon onClick={e => {ModalOff(setSelectedPost, setSelectedComment, setUpdateComment, setButtonCreatePost)}} icon={faCircleXmark} /></span>
       <form onSubmit={ e => UpdateCommets(e, id, comments.id, passwordDigest, listComments, setListComments, setUpdateComment)} id="UpdateComment">
         <p>Comment for post</p>
-        <textarea defaultValue={updateComment && listComments.find(el => comments.id === el.id).body} className="PostBody" type="text" name="comment[body]"></textarea>
+        <textarea className="PostBody" type="text" name="comment[body]"></textarea>
         <button type="submit">Update comment for post</button>
       </form>
       </Modal>
