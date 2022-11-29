@@ -11,7 +11,7 @@ import "../css/OwlCarouselSass.scss"
 
 function Gallery() {
   return (
-    <OwlCarousel className="owl-theme" items number={1}  stagePadding={0} slideBy={4} loop={true} autoplay={true} autoplayTimeout={2000}
+    <OwlCarousel className="owl-theme" items number={4}  stagePadding={0} slideBy={1} loop={true} autoplay={true} autoplayTimeout={2000}
       autoplayHoverPause={true} nav={true} >
         <div class="item">
           <img src={asd} />

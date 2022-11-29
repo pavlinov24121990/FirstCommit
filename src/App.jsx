@@ -8,6 +8,7 @@ import { Routee } from './Routs/Routers';
 
 function App() {
   const [passwordDigest, setPasswordDigest] = useState()
+  const [userName, setUserName] = useState()
 
   useEffect(() => {
     let tokeen = localStorage.getItem("passwordDigest")
@@ -24,7 +25,7 @@ function App() {
   return (
    
   
-    passwordDigest ? <MainRoute setPasswordDigest={setPasswordDigest}  passwordDigest={passwordDigest} /> : <Routee setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest}/>
+    passwordDigest ? <MainRoute userName={userName} setUserName={setUserName} setPasswordDigest={setPasswordDigest}  passwordDigest={passwordDigest} /> : <Routee setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest}/>
   );
 }
 export default App;

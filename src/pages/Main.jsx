@@ -5,12 +5,12 @@ import '../css/Fonts.css'
 import '../css/MainSass.scss'
 import { Routes, Route, Link, BrowserRouter, Outlet } from 'react-router-dom';
 
-const Main = ({setPasswordDigest, passwordDigest}) => {
+const Main = ({setPasswordDigest, passwordDigest, userName, setUserName}) => {
   return (
     <div className="MainMain">
       <NavBar setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest}/>
       <div className="CenterCenterCenter">
-        <HeaderMain setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest}/>
+        <HeaderMain userName={userName} setUserName={setUserName} setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest}/>
         <Outlet/>
       </div>
     </div>

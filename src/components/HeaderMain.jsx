@@ -6,6 +6,8 @@ import styled, { keyframes } from 'styled-components';
 import { bounce } from 'react-animations';
 import { flipOutY, rotateOut, zoomInDown } from 'react-animations';
 import { showUser } from '../Helpers/ShowUserHelper'
+import { useNavigate } from 'react-router-dom';
+
 
 
 //  Anime
@@ -15,17 +17,19 @@ const SvglFlipY = styled.div`animation: 7s ${keyframes`${rotateOut}`} infinite`;
 const EmailzoomInDown = styled.div`animation: 7s ${keyframes`${zoomInDown}`} infinite`;
 // Finish anime
 
-const HeaderMain = ({ setPasswordDigest, passwordDigest }) => {
-  const [userName, setUserName] = useState()
+const HeaderMain = ({ setPasswordDigest, passwordDigest, userName, setUserName }) => {
+  
   const [email, setEmail] = useState()
+  const navig = useNavigate();
 
   function Logout() {
-    setPasswordDigest("")
+    setPasswordDigest(false)
+    navig("/")
   }
   
   useEffect(() => {
     showUser( setEmail, setUserName, passwordDigest)
-    }, [setUserName, setEmail])
+    }, [userName, email])
 
   return (
     <section className='HeaderrMain'>

@@ -1,0 +1,122 @@
+.Servise {
+  background-color: rgb(6, 73, 73);
+  border-radius: 20px;
+  box-shadow: 0px 0px 30px 10px black;
+  width: 98%;
+  height: 100%;
+  margin-bottom: 30px;
+  text-align: center;
+  padding-top: 15px;
+  h2 {
+    font-size: 32px;
+    line-height: 40px;
+    font-family: "Dancing Script", cursive;
+    font-style: normal;
+    font-weight: 700;
+    color: antiquewhite;
+    margin-bottom: 30px;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-around;
+  }
+  .inputName {
+    position: relative;
+    margin-bottom: 30px;
+  }
+  .right {
+    left: 65%;
+  }
+  .buttonName {
+    margin-bottom: 30px;
+  }
+  p {
+    display: block;
+    font-size: 24px;
+    line-height: 32px;
+    font-family: "Dancing Script", cursive;
+    font-style: normal;
+    font-weight: 700;
+    color: antiquewhite;
+    margin-bottom: 30px;
+  }
+  input {
+    width: 45%;
+    height: 5vh;
+    font-size: 20px;
+    line-height: 20px;
+    font-family: "Dancing Script", cursive;
+    font-style: normal;
+    font-weight: 700;
+    border-radius: 20px;
+    border: 1px solid rgb(6, 73, 73);
+    margin-bottom: 30px;
+  }
+  .inputPassword {
+    margin-bottom: 30px;
+    position: relative;
+  }
+  button {
+    display: block;
+    border-radius: 6px;
+    font-size: 30px;
+    line-height: 48px;
+    width: 40%;
+    background-color: #1877f2;
+    cursor: pointer;
+    color: antiquewhite;
+    border-style: none;
+    font-family: "Dancing Script", cursive;
+    font-style: normal;
+    font-weight: 700;
+    box-shadow: 2px 1px 19px black;
+    &:hover {
+      color: red;
+      transition: 2s;
+      font-size: 40px;
+      box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
+    }
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 20%;
+    right: 55%;
+    color: #42b72a;
+    cursor: pointer;
+  }
+  svg:last-child {
+    right: 5%;
+  }
+  svg:hover {
+    transition: 1s;
+    width: 24px;
+    height: 24px;
+    color: #205714;
+  }
+}
+
+.InputError {
+  bottom: 106%;
+  right: 57%;
+  position: absolute;
+  width: 215px;
+  z-index: 1;
+  color: red;
+  border: 1px solid #ff253a;
+  padding: 5px;
+  border-radius: 50px;
+  background-color: turquoise;
+  transform: skewX(10deg);
+  box-shadow: 2px 1px 19px black;
+  &::before {
+    content: "";
+    border: 14px solid transparent;
+    border-top: 16px solid turquoise;
+    right: 11%;
+    top: 100%;
+    position: absolute;
+  }
+}

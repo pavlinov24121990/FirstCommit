@@ -1,10 +1,11 @@
-
+import "../css/AboutSass.scss"
+import favicon from "../Foto/favicon.jpeg"
 
 
 function About() {
   return (
-    <div>
-      
+    <div className="about">
+      <img src={favicon} alt="" /> 
     </div>
   )
 }

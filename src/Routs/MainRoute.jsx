@@ -10,15 +10,15 @@ import { Servise } from "../pages/Servise";
 import { Gallery } from "../pages/Gallery";
 import { Feedback } from "../pages/Feedback";
 
-function MainRoute({setPasswordDigest, passwordDigest}) {
+function MainRoute({setPasswordDigest, passwordDigest, userName, setUserName}) {
   return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Main setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest} />}>
+				<Route path="/" element={<Main userName={userName} setUserName={setUserName} setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest} />}>
 					<Route index element={<MainCenter setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest} />}/>
 					<Route path="post/:id" element={<PostComments passwordDigest={passwordDigest} />} />
 					<Route path="About" element={<About />} />
-					<Route path="Servise" element={<Servise />} />
+					<Route path="Servise" element={<Servise userName={userName} setUserName={setUserName} passwordDigest={passwordDigest} setPasswordDigest={setPasswordDigest}/>} />
 					<Route path="Gallery" element={<Gallery />} />
 					<Route path="Feedback" element={<Feedback/>} />
 				</Route>
