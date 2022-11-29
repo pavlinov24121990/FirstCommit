@@ -11,7 +11,6 @@ export async function UpdateUserName(e, passwordDigest, navig, setUserName, setF
     });
     let result = await request.json();
     form.reset();
-    console.log(result)
     if (request.ok) {
       setUserName(result.full_name)
       navig("/")

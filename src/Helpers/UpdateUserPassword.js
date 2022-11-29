@@ -11,7 +11,6 @@ export async function UpdateUserPassword(e, passwordDigest, navig, setPasswordDi
     });
     let result = await request.json();
     form.reset();
-    console.log(result)
     if (request.ok) {
       setPasswordDigest(false)
       navig("/")
