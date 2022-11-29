@@ -7,7 +7,7 @@ export async function DeleteUser(e, navig, passwordDigest, setPasswordDigest) {
     }
     });
       if (request.ok) {
-      setPasswordDigest(false)
+      setPasswordDigest("")
       navig("/")
     }
   }

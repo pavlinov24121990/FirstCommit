@@ -23,7 +23,7 @@ const HeaderMain = ({ setPasswordDigest, passwordDigest, userName, setUserName }
   const navig = useNavigate();
 
   function Logout() {
-    setPasswordDigest(false)
+    setPasswordDigest("")
     navig("/")
   }
   
