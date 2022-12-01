@@ -17,7 +17,7 @@ const SvglFlipY = styled.div`animation: 7s ${keyframes`${rotateOut}`} infinite`;
 const EmailzoomInDown = styled.div`animation: 7s ${keyframes`${zoomInDown}`} infinite`;
 // Finish anime
 
-const HeaderMain = ({ setPasswordDigest, passwordDigest, userName, setUserName }) => {
+const HeaderMain = ({ setPasswordDigest, passwordDigest, userName, setUserName, setUserNameId}) => {
   
   const [email, setEmail] = useState()
   const navig = useNavigate();
@@ -28,7 +28,7 @@ const HeaderMain = ({ setPasswordDigest, passwordDigest, userName, setUserName }
   }
   
   useEffect(() => {
-    showUser( setEmail, setUserName, passwordDigest)
+    showUser( setEmail, setUserName, passwordDigest, setUserNameId)
     }, [userName, email])
 
   return (

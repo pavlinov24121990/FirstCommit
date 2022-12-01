@@ -3,14 +3,14 @@ import { HeaderMain } from '../components/HeaderMain'
 import "../css/HardReset.css"
 import '../css/Fonts.css'
 import '../css/MainSass.scss'
-import { Routes, Route, Link, BrowserRouter, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
-const Main = ({setPasswordDigest, passwordDigest, userName, setUserName}) => {
+const Main = ({setPasswordDigest, passwordDigest, userName, setUserName, setUserNameId}) => {
   return (
     <div className="MainMain">
       <NavBar setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest}/>
       <div className="CenterCenterCenter">
-        <HeaderMain userName={userName} setUserName={setUserName} setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest}/>
+        <HeaderMain userName={userName} setUserName={setUserName} setPasswordDigest={setPasswordDigest} passwordDigest={passwordDigest} setUserNameId={setUserNameId}/>
         <Outlet/>
       </div>
     </div>

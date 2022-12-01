@@ -10,7 +10,7 @@ import { UpdateUserName } from "../Helpers/UpdateUserName";
 import { FirstNameHandler, LastNameHandler, PasswordHandler, PasswordConfirmationHandler } from '../Helpers/CreateNewAccountHandler';
 import { UpdateUserPassword } from "../Helpers/UpdateUserPassword";
 
-function Servise({passwordDigest, setPasswordDigest, userName, setUserName}) {
+function Servise({passwordDigest, setPasswordDigest, userName, setUserName, setUserNameId}) {
   const [email, setEmail] = useState()
   const navig = useNavigate();
 
@@ -27,7 +27,7 @@ function Servise({passwordDigest, setPasswordDigest, userName, setUserName}) {
 	const [passwordConfirmationError, setPasswordConfirmationError] = useState("")
 
   useEffect(() => {
-    showUser(setEmail, setUserName, passwordDigest)
+    showUser(setEmail, setUserName, passwordDigest, setUserNameId)
     }, [email, userName])
 
 

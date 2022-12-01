@@ -1,12 +1,13 @@
-export async function ShowPost(id, setTitle, setBody, setName, setListComments) {
+export async function ShowPost(id, setTitle, setBody, setName, setListComments, setSeePostButton) {
     let request = await fetch(`https://study-rails-blog-api.herokuapp.com/api/v1/posts/${id}`, {
       method: 'GET'
     });
-    let result = await request.json();
+  let result = await request.json();
     if (request.ok) {
       setTitle(result.title)
       setBody(result.body)
       setName(result.user.full_name)
       setListComments(result.comments)
+      setSeePostButton(result.user.id)
     }
 }

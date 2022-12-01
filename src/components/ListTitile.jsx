@@ -4,18 +4,34 @@ import { DeletePost } from '../Helpers/DeletePostHelper'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPenToSquare, faPlus, faMinus, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { showUser } from '../Helpers/ShowUserHelper'
+import { ButtonSee } from "../Helpers/ButtonSee";
 
 
-const MapList = ({ post, setSelectedPost, setButtonCreatePost, passwordDigest, listPost, setListPost}) => {
+const MapList = ({ post, setSelectedPost, setButtonCreatePost, passwordDigest, listPost, setListPost, userNameId, setUserNameId, userName, setUserName}) => {
 
+  const [seebutton, setSeeButton] = useState()
+  const [email, setEmail] = useState()
+
+
+    useEffect(() => {
+    showUser(setEmail, setUserName, passwordDigest, setUserNameId);
+    }, []);
   
+  useEffect(() => {
+    ButtonSee (post, userNameId, setSeeButton);
+    }, [seebutton]);
+  
+  
+
   return (
     <div className="centerPost">
       <div>
         <div>
-          <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost("");}} icon={faPlus} />
-          <FontAwesomeIcon onClick={ e => { setSelectedPost(post.id); setButtonCreatePost(post.id); }} icon={faPenToSquare} />
-          <FontAwesomeIcon onClick={ e => DeletePost(e, post.id, passwordDigest, listPost, setListPost)} icon={faMinus} />
+          {(seebutton) && <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost(""); }} icon={faPlus} />}
+          {(seebutton) && <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost(post.id); }} icon={faPenToSquare} />}
+          {(seebutton) && <FontAwesomeIcon onClick={e => DeletePost(e, post.id, passwordDigest, listPost, setListPost)} icon={faMinus} />}
         </div>
         <h2>{post.title}</h2>
         <p className="postBody">{post.body}</p>

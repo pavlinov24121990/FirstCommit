@@ -1,4 +1,4 @@
-export const showUser = async(setEmail, setUserName, passwordDigest) => {
+export const showUser = async(setEmail, setUserName, passwordDigest, setUserNameId) => {
   let request = await fetch('https://study-rails-blog-api.herokuapp.com/api/v1/user', {
     method: 'GET',
     headers: {
@@ -9,6 +9,7 @@ export const showUser = async(setEmail, setUserName, passwordDigest) => {
     if (request.ok) {
       setUserName(result.full_name)
       setEmail(result.email)
+      setUserNameId(result.id)
     }
 }
 

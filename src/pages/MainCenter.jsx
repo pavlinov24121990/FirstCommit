@@ -15,7 +15,7 @@ import { handleScroll } from '../Helpers/handleScrollHelper'
 import { SpanMainSerchAndSort } from '../components/SpanMainSerchAndSort'
 
 
-const MainCenter = ({ passwordDigest }) => {
+const MainCenter = ({ passwordDigest, userNameId, setUserNameId, userName, setUserName }) => {
 
   const [selectedPost, setSelectedPost] = useState(null)
   const [buttonCreatePost, setButtonCreatePost] = useState("")
@@ -79,7 +79,7 @@ const MainCenter = ({ passwordDigest }) => {
   }, [pagePost])
 
   const ListTitile = listPost && listPost.map((post) => {
-    return <MapList key={post.id} post={post} setSelectedPost={setSelectedPost} setButtonCreatePost={setButtonCreatePost} passwordDigest={passwordDigest} listPost={listPost} setListPost={setListPost}/>
+    return <MapList key={post.id} post={post} setSelectedPost={setSelectedPost} setButtonCreatePost={setButtonCreatePost} passwordDigest={passwordDigest} listPost={listPost} setListPost={setListPost} userNameId={userNameId} setUserNameId={setUserNameId} userName={userName} setUserName={setUserName}/>
   });
   
   

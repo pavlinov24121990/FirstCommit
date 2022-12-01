@@ -14,8 +14,10 @@ import { ShowPost } from "../Helpers/ShowPostHelper";
 import '../css/PostCommentsSass.scss'
 import { Commets } from '../components/Commets'
 import { CreateComments } from "../Helpers/CreateComments";
+import { showUser } from '../Helpers/ShowUserHelper';
+import { PostButtonSee } from "../Helpers/PostButtonSee";
 
-const PostComments = ({passwordDigest}) => {
+const PostComments = ({passwordDigest, userNameId, setUserName, setUserNameId}) => {
   const { id } = useParams()
   const [title, setTitle] = useState()
   const [body, setBody] = useState()
@@ -27,19 +29,31 @@ const PostComments = ({passwordDigest}) => {
   const [listComments, setListComments] = useState([])
   const [updateComment, setUpdateComment] = useState()
   const [buttonCreatePost, setButtonCreatePost] = useState("")
-  
+  const [seebutton, setSeeButton] = useState()
+  const [email, setEmail] = useState()
+  const [post, setPost] = useState()
+  const [seePostButton, setSeePostButton] = useState()
 
     
     
     
   let ListCommentsSee = listComments && listComments.map((comments) => {
-    return <Commets key={comments.id} id={id} comments={comments} passwordDigest={passwordDigest} listComments={listComments} setListComments={setListComments} setSelectedComment={setSelectedComment} selectedComment={selectedComment} selectedPost={selectedPost} setSelectedPost={setSelectedPost}/>
+    return <Commets key={comments.id} id={id} comments={comments} passwordDigest={passwordDigest} listComments={listComments} setListComments={setListComments} setSelectedComment={setSelectedComment} setSelectedPost={setSelectedPost} userNameId={userNameId}/>
   })
   
   
   useEffect(() => {
-    ShowPost(id, setTitle, setBody, setName, setListComments)
+    ShowPost(id, setTitle, setBody, setName, setListComments, setSeePostButton)
   }, [])
+
+  useEffect(() => {
+    showUser(setEmail, setUserName, passwordDigest, setUserNameId);
+    }, []);
+  
+  useEffect(() => {
+    PostButtonSee (setSeeButton, userNameId, seePostButton);
+    }, [seePostButton]);
+  
   
  
   return (
@@ -47,8 +61,8 @@ const PostComments = ({passwordDigest}) => {
       <div className="centerPost">
         <div>
           <div>
-            <FontAwesomeIcon onClick={ e => setSelectedPost(id)} icon={faPenToSquare} />
-            <FontAwesomeIcon onClick={ e => DeletePost(e, id, passwordDigest, listPost, setListPost, navig)} icon={faMinus} />
+            {(seebutton) && <FontAwesomeIcon onClick={e => setSelectedPost(id)} icon={faPenToSquare} />}
+            {(seebutton) && <FontAwesomeIcon onClick={e => DeletePost(e, id, passwordDigest, listPost, setListPost, navig)} icon={faMinus} />}
           </div>
           <h2>{title}</h2>
           <p className="postBody">{body}</p>
