@@ -2,5 +2,5 @@ export function ModalOff(setSelectedPost, setSelectedComment, setUpdateComment, 
   setSelectedPost(null)
   setSelectedComment(null)
   setUpdateComment(null)
-  setButtonCreatePost(null)
+  setButtonCreatePost("")
   }

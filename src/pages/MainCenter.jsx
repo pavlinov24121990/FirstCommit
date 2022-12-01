@@ -28,7 +28,9 @@ const MainCenter = ({ passwordDigest, userNameId, setUserNameId, userName, setUs
   const [handleScrollStop, setHandleScrollStop] = useState(true)
   const [selectedComment, setSelectedComment] = useState()
   const [updateComment, setUpdateComment] = useState()
-  
+  const [seeTitlePost, setSeeTitlePost] = useState("")
+  const [seeBodyPost, setSeeBodyPost] = useState("")
+
 
   function numberPage() {
     setPage(page + 1)    
@@ -79,7 +81,7 @@ const MainCenter = ({ passwordDigest, userNameId, setUserNameId, userName, setUs
   }, [pagePost])
 
   const ListTitile = listPost && listPost.map((post) => {
-    return <MapList key={post.id} post={post} setSelectedPost={setSelectedPost} setButtonCreatePost={setButtonCreatePost} passwordDigest={passwordDigest} listPost={listPost} setListPost={setListPost} userNameId={userNameId} setUserNameId={setUserNameId} userName={userName} setUserName={setUserName}/>
+    return <MapList key={post.id} post={post} setSelectedPost={setSelectedPost} setButtonCreatePost={setButtonCreatePost} passwordDigest={passwordDigest} listPost={listPost} setListPost={setListPost} userNameId={userNameId} setUserNameId={setUserNameId} userName={userName} setUserName={setUserName} setSeeTitlePost={setSeeTitlePost} setSeeBodyPost={setSeeBodyPost}/>
   });
   
   
@@ -94,10 +96,10 @@ const MainCenter = ({ passwordDigest, userNameId, setUserNameId, userName, setUs
       <span><FontAwesomeIcon onClick={e => {ModalOff(setSelectedPost, setSelectedComment, setUpdateComment, setButtonCreatePost)}} icon={faCircleXmark} /></span>
       <form id="CreateNewPost" onSubmit={e => { buttonFunction(e, selectedPost) }}>
         <p>Title post</p>
-        <input type="text" name="post[title]" />
+        <input type="text" value={(buttonCreatePost) && seeTitlePost} onChange={e => setSeeTitlePost(e.target.value)} name="post[title]" />
         <p>Body post</p>
-        <textarea className="PostBody" type="text" name="post[body]"></textarea>
-        <input id="InptImg" type="hidden" name="post[image_link]"/>
+        <textarea value={(buttonCreatePost) && seeBodyPost} onChange={e => setSeeBodyPost(e.target.value)} className="PostBody" type="text" name="post[body]"></textarea>
+        <input id="InptImg"  type="hidden" name="post[image_link]"/>
         <button type="submit">{buttonCreatePost ? "Update" : "Create"} post</button>
       </form>
       </Modal>

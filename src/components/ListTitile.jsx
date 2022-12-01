@@ -9,7 +9,7 @@ import { showUser } from '../Helpers/ShowUserHelper'
 import { ButtonSee } from "../Helpers/ButtonSee";
 
 
-const MapList = ({ post, setSelectedPost, setButtonCreatePost, passwordDigest, listPost, setListPost, userNameId, setUserNameId, userName, setUserName}) => {
+const MapList = ({ post, setSelectedPost, setButtonCreatePost, passwordDigest, listPost, setListPost, userNameId, setUserNameId, userName, setUserName, setSeeTitlePost, setSeeBodyPost}) => {
 
   const [seebutton, setSeeButton] = useState()
   const [email, setEmail] = useState()
@@ -30,7 +30,7 @@ const MapList = ({ post, setSelectedPost, setButtonCreatePost, passwordDigest, l
       <div>
         <div>
           {(seebutton) && <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost(""); }} icon={faPlus} />}
-          {(seebutton) && <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost(post.id); }} icon={faPenToSquare} />}
+          {(seebutton) && <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost(post.id); setSeeTitlePost(post.title); setSeeBodyPost(post.body) }} icon={faPenToSquare} />}
           {(seebutton) && <FontAwesomeIcon onClick={e => DeletePost(e, post.id, passwordDigest, listPost, setListPost)} icon={faMinus} />}
         </div>
         <h2>{post.title}</h2>
