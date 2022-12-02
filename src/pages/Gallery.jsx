@@ -13,16 +13,16 @@ function Gallery() {
   return (
     <OwlCarousel className="owl-theme" items number={4}  stagePadding={0} slideBy={1} loop={true} autoplay={true} autoplayTimeout={2000}
       autoplayHoverPause={true} nav={true} >
-        <div class="item">
+        <div className="item">
           <img src={asd} />
         </div>
-        <div class="item">
+        <div className="item">
           <img src={dsa} />
         </div>
-        <div class="item">
+        <div className="item">
           <img src={as} />
         </div>
-        <div class="item">
+        <div className="item">
           <img src={asdf} />
         </div>
       </OwlCarousel>
