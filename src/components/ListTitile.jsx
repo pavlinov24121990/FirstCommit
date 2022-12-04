@@ -29,7 +29,7 @@ const MapList = ({ post, setSelectedPost, setButtonCreatePost, passwordDigest, l
     <div className="centerPost">
       <div>
         <div>
-          {(seebutton) && <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost(""); }} icon={faPlus} />}
+          <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost(""); }} icon={faPlus} />
           {(seebutton) && <FontAwesomeIcon onClick={e => { setSelectedPost(post.id); setButtonCreatePost(post.id); setSeeTitlePost(post.title); setSeeBodyPost(post.body) }} icon={faPenToSquare} />}
           {(seebutton) && <FontAwesomeIcon onClick={e => DeletePost(e, post.id, passwordDigest, listPost, setListPost)} icon={faMinus} />}
         </div>
