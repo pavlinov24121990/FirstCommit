@@ -96,9 +96,9 @@ const MainCenter = ({ passwordDigest, userNameId, setUserNameId, userName, setUs
       <span><FontAwesomeIcon onClick={e => {ModalOff(setSelectedPost, setSelectedComment, setUpdateComment, setButtonCreatePost)}} icon={faCircleXmark} /></span>
       <form id="CreateNewPost" onSubmit={e => { buttonFunction(e, selectedPost) }}>
         <p>Title post</p>
-        <input type="text" value={(buttonCreatePost) && seeTitlePost} onChange={e => setSeeTitlePost(e.target.value)} name="post[title]" />
+        <input type="text" value={seeTitlePost} onChange={e => setSeeTitlePost(e.target.value)} name="post[title]" />
         <p>Body post</p>
-        <textarea value={(buttonCreatePost) && seeBodyPost} onChange={e => setSeeBodyPost(e.target.value)} className="PostBody" type="text" name="post[body]"></textarea>
+        <textarea value={seeBodyPost} onChange={e => setSeeBodyPost(e.target.value)} className="PostBody" type="text" name="post[body]"></textarea>
         <input id="InptImg"  type="hidden" name="post[image_link]"/>
         <button type="submit">{buttonCreatePost ? "Update" : "Create"} post</button>
       </form>

@@ -27,7 +27,7 @@
     "validator": "^13.7.0",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
+ "scripts": {
     "dev": "react-scripts start",
 "start": "serve -s build",
 "build": "react-scripts build",
